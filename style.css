@@ -28,19 +28,34 @@ nav a {
 
 nav a:hover {
     text-decoration: underline;
+    <a href="#about">About</a>
+    <a href="https://github.com/TempletonLam8" target="_blank">GitHub</a>
+    <a href="#contact">Contact</a>
+</nav>
+
 }
 
 main {
-    background-color: white;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 800px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    <section id="about">
+    <h2>About Me</h2>
+    <p>Hi! I'm Templeton Lam, a beginner in web development who’s curious, creative, and committed to learning new things.</p>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <p>Email me at <a href="mailto:your@email.com">templeton.lam8@gmail.com</a></p>
+</section>
 }
 
 footer {
     text-align: center;
     margin-top: 40px;
     color: #777;
+}
+
+.profile-img {
+    width: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 20px auto;
 }
