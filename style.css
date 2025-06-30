@@ -59,3 +59,53 @@ footer {
     display: block;
     margin: 20px auto;
 }
+
+#todo {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#todo input {
+    width: 70%;
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#todo button {
+    padding: 8px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#todo button:hover {
+    background-color: #218838;
+}
+
+#taskList {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+#taskList li {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#taskList li:hover {
+    background-color: #ffe6e6;
+    text-decoration: line-through;
+}
