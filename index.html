@@ -22,33 +22,27 @@
         <section>
             <h2>About Me</h2>
             <p>This is a simple page I made while learning web development. It has HTML and CSS in separate files!</p>
-        
-            <h2>My To-Do List</h2>
-            <label for="taskInput">Task:</label>
-            <input type="text" id="taskInput" placeholder="Enter a new task" />
-
-            <label for="dueDateInput">Due Date:</label>
-            <input type="date" id="dueDateInput" />
-
-            <button onclick="addTask()">Add Task</button>
-            <ul id="taskList"></ul>
-            <div class="task-form"</div>
         </section>
 
-         <label for="taskInput">Task:</label>
-         <input type="text" id="taskInput" placeholder="Enter a new task" />
-    
-         <label for="dueDateInput">Due Date:</label>
-         <input type="date" id="dueDateInput" />
+        <section id="todo">
+            <h2>My To-Do List</h2>
+            <div class="task-form">
+                <label for="taskInput">Task:</label>
+                <input type="text" id="taskInput" placeholder="Enter a new task" />
 
-    <button onclick="addTask()">Add Task</button>
-    
+                <label for="dueDateInput">Due Date:</label>
+                <input type="date" id="dueDateInput" />
 
+                <button onclick="addTask()">Add Task</button>
+            </div>
+            <ul id="taskList"></ul>
+        </section>
     </main>
 
     <footer>
         <p>&copy; 2025 My Website. All rights reserved.</p>
     </footer>
-<script src="script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
