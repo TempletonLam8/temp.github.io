@@ -19,7 +19,7 @@ function addTask() {
     input.value = "";
 }
 
-function addTaskToDOM(task, isCompleted) {
+function addTaskToDOM(task, isCompleted, dueDate = "") {
     const list = document.getElementById("taskList");
     const li = document.createElement("li");
     li.classList.add("fade-in");
@@ -29,7 +29,7 @@ function addTaskToDOM(task, isCompleted) {
     checkbox.checked = isCompleted;
 
     const span = document.createElement("span");
-    span.textContent = task;
+    span.textContent = task + (dueDate ? ` (Due: ${dueDate})` : "");
     if (isCompleted) {
         span.classList.add("completed");
     }
