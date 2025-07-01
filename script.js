@@ -4,7 +4,9 @@ window.onload = function () {
 
 function addTask() {
     const input = document.getElementById("taskInput");
+    const dueInput = document.getElementById("dueDateInput");
     const task = input.value.trim();
+    const dueDate = dueInput.value;
 
     if (task === "") {
         alert("Please enter a task.");
@@ -12,11 +14,12 @@ function addTask() {
     }
 
     const tasks = getStoredTasks();
-    tasks.push({ text: task, completed: false });
+    tasks.push({ text: task, completed: false, due: dueDate });
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
-    addTaskToDOM(task, false);
+    addTaskToDOM(task, false, dueDate);
     input.value = "";
+    dueInput.value = "";
 }
 
 function addTaskToDOM(task, isCompleted, dueDate = "") {
@@ -49,7 +52,6 @@ function loadTasks() {
     tasks.forEach(t => addTaskToDOM(t.text, t.completed, t.due || ""));
 }
 
-
 function getStoredTasks() {
     const stored = localStorage.getItem("tasks");
     return stored ? JSON.parse(stored) : [];
@@ -58,7 +60,7 @@ function getStoredTasks() {
 function toggleTaskCompletion(taskText) {
     let tasks = getStoredTasks();
     tasks = tasks.map(t =>
-        t.text === taskText ? { text: t.text, completed: !t.completed, due: t.due } : t
+        t.text === taskText ? { ...t, completed: !t.completed } : t
     );
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -69,24 +71,3 @@ function clearAllTasks() {
         document.getElementById("taskList").innerHTML = "";
     }
 }
-function clearAllTasks() {
-    if (confirm("Are you sure you want to delete all tasks?")) {
-        localStorage.removeItem("tasks");
-        document.getElementById("taskList").innerHTML = "";
-    }
-}
-
-function clearAllTasks() {
-    if (confirm("Are you sure you want to delete all tasks?")) {
-        localStorage.removeItem("tasks");
-        document.getElementById("taskList").innerHTML = "";
-    }
-}
-
-function clearAllTasks() {
-    if (confirm("Are you sure you want to delete all tasks?")) {
-        localStorage.removeItem("tasks");
-        document.getElementById("taskList").innerHTML = "";
-    }
-}
-
