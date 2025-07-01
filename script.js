@@ -46,8 +46,9 @@ function addTaskToDOM(task, isCompleted, dueDate = "") {
 
 function loadTasks() {
     const tasks = getStoredTasks();
-    tasks.forEach(t => addTaskToDOM(t.text, t.completed));
+    tasks.forEach(t => addTaskToDOM(t.text, t.completed, t.due || ""));
 }
+
 
 function getStoredTasks() {
     const stored = localStorage.getItem("tasks");
@@ -57,7 +58,8 @@ function getStoredTasks() {
 function toggleTaskCompletion(taskText) {
     let tasks = getStoredTasks();
     tasks = tasks.map(t =>
-        t.text === taskText ? { ...t, completed: !t.completed } : t
+        t.text === taskText ? { text: t.text, completed: !t.completed, due: t.due } : t
     );
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
