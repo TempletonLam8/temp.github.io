@@ -150,3 +150,25 @@ li {
 #clearButton:hover {
     background-color: #c0392b;
 }
+
+@media (max-width: 600px) {
+    body {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .task-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .task-form input,
+    .task-form button {
+        margin-bottom: 10px;
+    }
+
+    nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}
