@@ -17,10 +17,15 @@ function addTask() {
     tasks.push({ text: task, completed: false, due: dueDate });
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
-    addTaskToDOM(task, false, dueDate);
+    span.textContent = task + (dueDate ? ` (Due: ${dueDate})` : "");
     input.value = "";
     dueInput.value = "";
 }
+
+if (dueDate && new Date(dueDate) < new Date().setHours(0,0,0,0)) {
+    span.style.color = "red"; // Overdue
+}
+
 
 function addTaskToDOM(task, isCompleted, dueDate = "") {
     const list = document.getElementById("taskList");
