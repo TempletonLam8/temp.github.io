@@ -1,26 +1,4 @@
-function addTask() {
-    const input = document.getElementById("taskInput");
-    const task = input.value.trim();
-
-    if (task === "") {
-        alert("Please enter a task.");
-        return;
-    }
-
-    const list = document.getElementById("taskList");
-    const li = document.createElement("li");
-    li.textContent = task;
-
-    // Remove task on click
-    li.addEventListener("click", () => {
-        list.removeChild(li);
-    });
-
-    list.appendChild(li);
-    input.value = "";
-}
-
-// Load tasks when page loads
+// Load saved tasks when the page loads
 window.onload = function () {
     loadTasks();
 };
@@ -47,6 +25,7 @@ function addTaskToDOM(task) {
     const li = document.createElement("li");
     li.textContent = task;
 
+    // Click to delete task
     li.addEventListener("click", () => {
         list.removeChild(li);
         removeTask(task);
