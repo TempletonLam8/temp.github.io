@@ -63,3 +63,30 @@ function toggleTaskCompletion(taskText) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+function clearAllTasks() {
+    if (confirm("Are you sure you want to delete all tasks?")) {
+        localStorage.removeItem("tasks");
+        document.getElementById("taskList").innerHTML = "";
+    }
+}
+function clearAllTasks() {
+    if (confirm("Are you sure you want to delete all tasks?")) {
+        localStorage.removeItem("tasks");
+        document.getElementById("taskList").innerHTML = "";
+    }
+}
+
+function clearAllTasks() {
+    if (confirm("Are you sure you want to delete all tasks?")) {
+        localStorage.removeItem("tasks");
+        document.getElementById("taskList").innerHTML = "";
+    }
+}
+
+function clearAllTasks() {
+    if (confirm("Are you sure you want to delete all tasks?")) {
+        localStorage.removeItem("tasks");
+        document.getElementById("taskList").innerHTML = "";
+    }
+}
+
