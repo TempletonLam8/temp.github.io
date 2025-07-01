@@ -13,6 +13,10 @@ function addTask() {
         return;
     }
 
+    function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+
     const tasks = getStoredTasks();
     tasks.push({ text: task, completed: false, due: dueDate });
     localStorage.setItem("tasks", JSON.stringify(tasks));
