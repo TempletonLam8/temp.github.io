@@ -1,4 +1,3 @@
-// Load saved tasks when the page loads
 window.onload = function () {
     loadTasks();
 };
@@ -13,30 +12,41 @@ function addTask() {
     }
 
     const tasks = getStoredTasks();
-    tasks.push(task);
+    tasks.push({ text: task, completed: false });
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
-    addTaskToDOM(task);
+    addTaskToDOM(task, false);
     input.value = "";
 }
 
-function addTaskToDOM(task) {
+function addTaskToDOM(task, isCompleted) {
     const list = document.getElementById("taskList");
     const li = document.createElement("li");
-    li.textContent = task;
+    li.classList.add("fade-in");
 
-    // Click to delete task
-    li.addEventListener("click", () => {
-        list.removeChild(li);
-        removeTask(task);
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = isCompleted;
+
+    const span = document.createElement("span");
+    span.textContent = task;
+    if (isCompleted) {
+        span.classList.add("completed");
+    }
+
+    checkbox.addEventListener("change", () => {
+        span.classList.toggle("completed");
+        toggleTaskCompletion(task);
     });
 
+    li.appendChild(checkbox);
+    li.appendChild(span);
     list.appendChild(li);
 }
 
 function loadTasks() {
     const tasks = getStoredTasks();
-    tasks.forEach(task => addTaskToDOM(task));
+    tasks.forEach(t => addTaskToDOM(t.text, t.completed));
 }
 
 function getStoredTasks() {
@@ -44,8 +54,10 @@ function getStoredTasks() {
     return stored ? JSON.parse(stored) : [];
 }
 
-function removeTask(taskToRemove) {
+function toggleTaskCompletion(taskText) {
     let tasks = getStoredTasks();
-    tasks = tasks.filter(task => task !== taskToRemove);
+    tasks = tasks.map(t =>
+        t.text === taskText ? { ...t, completed: !t.completed } : t
+    );
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
