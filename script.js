@@ -71,3 +71,10 @@ function clearAllTasks() {
         document.getElementById("taskList").innerHTML = "";
     }
 }
+
+function updateTaskCounter() {
+    const tasks = getStoredTasks();
+    const total = tasks.length;
+    const completed = tasks.filter(t => t.completed).length;
+    document.getElementById("taskCounter").textContent = `${completed} of ${total} tasks completed`;
+}
