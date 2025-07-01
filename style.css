@@ -172,3 +172,21 @@ li {
         margin: 5px 0;
     }
 }
+
+body.dark {
+    background-color: #222;
+    color: #eee;
+}
+
+body.dark header,
+body.dark footer {
+    background-color: #333;
+    color: #eee;
+}
+
+body.dark input,
+body.dark button {
+    background-color: #444;
+    color: white;
+    border: 1px solid #555;
+}
