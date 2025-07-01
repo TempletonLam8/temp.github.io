@@ -83,3 +83,13 @@ function updateTaskCounter() {
     const completed = tasks.filter(t => t.completed).length;
     document.getElementById("taskCounter").textContent = `${completed} of ${total} tasks completed`;
 }
+
+function downloadTasks() {
+    const tasks = getStoredTasks();
+    const content = JSON.stringify(tasks, null, 2);
+    const blob = new Blob([content], { type: "application/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "tasks.json";
+    link.click();
+}
