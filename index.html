@@ -1,74 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My First Web Page</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My First Web Page</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <header>
-        <img src="profile.jpg" alt="My Photo" class="profile-img" />
-        <h1>Hello, I'm Templeton Lam</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
+  <header>
+    <img src="profile.jpg" alt="My Photo" class="profile-img" />
+    <h1>Hello, I'm Templeton Lam</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
 
-    <main>
-        <section>
-            <h2>About Me</h2>
-            <p>This is a simple page I made while learning web development. It has HTML and CSS in separate files!</p>
-        </section>
+  <main>
+    <section>
+      <h2>About Me</h2>
+      <p>This is a simple page I made while learning web development. It uses HTML, CSS, and JavaScript!</p>
+    </section>
 
-        <section id="todo">
-            <h2>My To-Do List</h2>
-            <div class="task-form">
-                <label for="taskInput">Task:</label>
-                <input type="text" id="taskInput" placeholder="Enter a new task" />
+    <section id="todo">
+      <h2>My To-Do List</h2>
+      <div class="task-form">
+        <label for="taskInput">Task:</label>
+        <input type="text" id="taskInput" placeholder="Enter a new task" />
 
-                <label for="dueDateInput">Due Date:</label>
-                <input type="date" id="dueDateInput" />
+        <label for="dueDateInput">Due Date:</label>
+        <input type="date" id="dueDateInput" />
 
-                <button onclick="addTask()">Add Task</button>
-            </div>
-            <ul id="taskList"></ul>
-            <p id="taskCounter">0 of 0 tasks completed</p>
-            <button id="clearButton" onclick="clearAllTasks()">Clear All Tasks</button>
-            <button onclick="downloadTasks()">Download Tasks</button>
-        </section>
-    </main>
+        <button onclick="addTask()">Add Task</button>
+      </div>
 
-    <footer>
-        <p>&copy; 2025 My Website. All rights reserved.</p>
-    </footer>
+      <ul id="taskList"></ul>
+      <p id="taskCount">0 of 0 tasks completed</p>
 
-    <script src="script.js"></script>
+      <button onclick="clearAllTasks()">Clear All Tasks</button>
+      <button onclick="downloadTasks()">Download Tasks</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 My Website. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
-    
-@media (max-width: 600px) {
-    body {
-        font-size: 16px;
-        padding: 10px;
-    }
-
-    .task-form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .task-form input,
-    .task-form button {
-        margin-bottom: 10px;
-    }
-
-    nav a {
-        display: block;
-        margin: 5px 0;
-    }
-}
-
 </html>
