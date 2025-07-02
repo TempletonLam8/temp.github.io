@@ -1,99 +1,94 @@
 window.onload = function () {
-    loadTasks();
+  loadTasks();
 };
 
 function addTask() {
-    const input = document.getElementById("taskInput");
-    const dueInput = document.getElementById("dueDateInput");
-    const task = input.value.trim();
-    const dueDate = dueInput.value;
+  const input = document.getElementById("taskInput");
+  const dateInput = document.getElementById("dueDateInput");
+  const task = input.value.trim();
+  const dueDate = dateInput.value;
 
-    if (task === "") {
-        alert("Please enter a task.");
-        return;
-    }
+  if (task === "") {
+    alert("Please enter a task.");
+    return;
+  }
 
-    function toggleDarkMode() {
-    document.body.classList.toggle("dark");
+  const tasks = getStoredTasks();
+  tasks.push({ text: task, completed: false, due: dueDate });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+  addTaskToDOM(task, false, dueDate);
+  input.value = "";
+  dateInput.value = "";
+  updateTaskCount();
 }
-
-    const tasks = getStoredTasks();
-    tasks.push({ text: task, completed: false, due: dueDate });
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-
-    span.textContent = task + (dueDate ? ` (Due: ${dueDate})` : "");
-    input.value = "";
-    dueInput.value = "";
-}
-
-if (dueDate && new Date(dueDate) < new Date().setHours(0,0,0,0)) {
-    span.style.color = "red"; // Overdue
-}
-
 
 function addTaskToDOM(task, isCompleted, dueDate = "") {
-    const list = document.getElementById("taskList");
-    const li = document.createElement("li");
-    li.classList.add("fade-in");
+  const list = document.getElementById("taskList");
+  const li = document.createElement("li");
 
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.checked = isCompleted;
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = isCompleted;
 
-    const span = document.createElement("span");
-    span.textContent = task + (dueDate ? ` (Due: ${dueDate})` : "");
-    if (isCompleted) {
-        span.classList.add("completed");
-    }
+  const span = document.createElement("span");
+  span.textContent = task + (dueDate ? ` (Due: ${dueDate})` : "");
+  if (isCompleted) {
+    span.classList.add("completed");
+  }
 
-    checkbox.addEventListener("change", () => {
-        span.classList.toggle("completed");
-        toggleTaskCompletion(task);
-    });
+  checkbox.addEventListener("change", () => {
+    span.classList.toggle("completed");
+    toggleTaskCompletion(task);
+    updateTaskCount();
+  });
 
-    li.appendChild(checkbox);
-    li.appendChild(span);
-    list.appendChild(li);
+  li.appendChild(checkbox);
+  li.appendChild(span);
+  list.appendChild(li);
 }
 
 function loadTasks() {
-    const tasks = getStoredTasks();
-    tasks.forEach(t => addTaskToDOM(t.text, t.completed, t.due || ""));
+  const tasks = getStoredTasks();
+  tasks.forEach(t => addTaskToDOM(t.text, t.completed, t.due || ""));
+  updateTaskCount();
 }
 
 function getStoredTasks() {
-    const stored = localStorage.getItem("tasks");
-    return stored ? JSON.parse(stored) : [];
+  const stored = localStorage.getItem("tasks");
+  return stored ? JSON.parse(stored) : [];
 }
 
 function toggleTaskCompletion(taskText) {
-    let tasks = getStoredTasks();
-    tasks = tasks.map(t =>
-        t.text === taskText ? { ...t, completed: !t.completed } : t
-    );
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+  let tasks = getStoredTasks();
+  tasks = tasks.map(t =>
+    t.text === taskText ? { ...t, completed: !t.completed } : t
+  );
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function clearAllTasks() {
-    if (confirm("Are you sure you want to delete all tasks?")) {
-        localStorage.removeItem("tasks");
-        document.getElementById("taskList").innerHTML = "";
-    }
-}
-
-function updateTaskCounter() {
-    const tasks = getStoredTasks();
-    const total = tasks.length;
-    const completed = tasks.filter(t => t.completed).length;
-    document.getElementById("taskCounter").textContent = `${completed} of ${total} tasks completed`;
+  if (confirm("Are you sure you want to delete all tasks?")) {
+    localStorage.removeItem("tasks");
+    document.getElementById("taskList").innerHTML = "";
+    updateTaskCount();
+  }
 }
 
 function downloadTasks() {
-    const tasks = getStoredTasks();
-    const content = JSON.stringify(tasks, null, 2);
-    const blob = new Blob([content], { type: "application/json" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "tasks.json";
-    link.click();
+  const tasks = getStoredTasks();
+  const blob = new Blob([JSON.stringify(tasks, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "tasks.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function updateTaskCount() {
+  const tasks = getStoredTasks();
+  const completed = tasks.filter(t => t.completed).length;
+  document.getElementById("taskCount").textContent = `${completed} of ${tasks.length} tasks completed`;
 }
